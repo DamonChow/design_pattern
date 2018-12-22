@@ -28,6 +28,6 @@
 - Memento（备忘录模式）
 - Observer（观察者模式）
 - State（状态模式）
-- Strategy （[策略模式]((https://github.com/DamonChow/design_pattern/tree/master/strategy))）
+- Strategy [策略模式]((https://github.com/DamonChow/design_pattern/tree/master/strategy))
 - Template Method （模板方法）
 - Visitor（访问者模式）
