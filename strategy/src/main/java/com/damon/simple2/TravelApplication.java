@@ -3,7 +3,7 @@ package com.damon.simple2;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 功能：出现
+ * 功能：出行
  *
  * @author Damon
  * @since 2018-12-20 11:01

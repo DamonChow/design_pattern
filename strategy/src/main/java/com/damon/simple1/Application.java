@@ -15,13 +15,13 @@ public class Application {
         Context context = new Context(new AddStrategy());
         log.info("10 + 5 = {}", context.executeStrategy(10, 5));
 
-        context = new Context(new SubstractStrategy());
+        context.setStrategy(new SubstractStrategy());
         log.info("10 - 5 = {}", context.executeStrategy(10, 5));
 
-        context = new Context(new MultiplyStrategy());
+        context.setStrategy(new MultiplyStrategy());
         log.info("10 * 5 = {}", context.executeStrategy(10, 5));
 
-        context = new Context(new DivideStrategy());
+        context.setStrategy(new DivideStrategy());
         log.info("10 / 5 = {}", context.executeStrategy(10, 5));
     }
 }
