@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * 功能：链管理者，链上所有节点都在此管理
  *
- * @author zhoujiwei
+ * @author Damon
  * @since 2018-12-23 21:54
  */
 @Slf4j
