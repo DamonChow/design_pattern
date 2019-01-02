@@ -11,6 +11,7 @@
         <module>strategy</module>
         <module>chain</module>
         <module>state</module>
+        <module>command</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
