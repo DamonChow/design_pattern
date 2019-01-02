@@ -383,3 +383,5 @@ public class Receiver {
 [java设计模式之命令模式](https://www.cnblogs.com/lfxiao/p/6825644.html)
 
 [细数JDK里的设计模式](https://www.cnblogs.com/tinyking/p/5938547.html)
+
+[wiki的命令模式](https://en.wikipedia.org/wiki/Command_pattern)

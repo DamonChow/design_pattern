@@ -12,6 +12,7 @@
         <module>chain</module>
         <module>state</module>
         <module>command</module>
+        <module>iterator</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
