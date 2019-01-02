@@ -23,7 +23,7 @@
 - Chain of Responsibility（[责任链模式](https://damonchow.github.io/2018/12/21/design-pattern-chain/)）
 - Command （[命令模式](https://damonchow.github.io/2019/01/02/design-pattern-command/)）
 - Interpreter （解释器模式）
-- Iterator（迭代器模式）
+- Iterator（[迭代器模式](https://damonchow.github.io/2019/01/02/design-pattern-iterator/)）
 - Mediator（中介者模式）
 - Memento（备忘录模式）
 - Observer（观察者模式）
