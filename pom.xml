@@ -13,6 +13,7 @@
         <module>state</module>
         <module>command</module>
         <module>iterator</module>
+        <module>visitor</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>

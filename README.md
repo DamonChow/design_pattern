@@ -1,5 +1,7 @@
 ## 设计模式
 
+[软件设计模式原则](https://damonchow.github.io/2019/01/05/principles-of-software-design-patterns/)
+
 ### 构建模式
 
 - Builder （建造者模式）
@@ -30,4 +32,4 @@
 - State（[状态模式](https://damonchow.github.io/2018/12/24/design-pattern-state)）
 - Strategy ([策略模式](https://damonchow.github.io/2018/12/20/design-pattern-strategy/))
 - Template Method （模板方法）
-- Visitor（访问者模式）
+- Visitor（[访问者模式](https://damonchow.github.io/2019/01/07/design-pattern-visitor/)）
