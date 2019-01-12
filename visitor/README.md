@@ -32,7 +32,7 @@
 
 UML类图和时序图
 
-![img](https:////upload.wikimedia.org/wikipedia/commons/0/00/W3sDesign_Visitor_Design_Pattern_UML.jpg)
+![img](https://upload.wikimedia.org/wikipedia/commons/0/00/W3sDesign_Visitor_Design_Pattern_UML.jpg)
 
 在类图中可以看出，ElementA实现了接口Element的accept(visitor)方法，而通过visitor.visitElementA(this)，相同visitor1类通过实现visitElementA(ElementA a)方法与ElementA关联。相同的ElementB亦是如此原理。
 
@@ -40,7 +40,7 @@ UML类图和时序图
 
 更加清晰的类图如下
 
-![img](https:////upload.wikimedia.org/wikipedia/en/thumb/e/eb/Visitor_design_pattern.svg/430px-Visitor_design_pattern.svg.png)
+![img](https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Visitor_design_pattern.svg/430px-Visitor_design_pattern.svg.png)
 
 
 

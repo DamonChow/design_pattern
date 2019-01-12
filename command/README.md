@@ -20,9 +20,9 @@
 
 ### 再来看看UML图
 
-![img](https:////upload.wikimedia.org/wikipedia/commons/c/c8/W3sDesign_Command_Design_Pattern_UML.jpg)
+![img](https://upload.wikimedia.org/wikipedia/commons/c/c8/W3sDesign_Command_Design_Pattern_UML.jpg)
 
-![img](https:////upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Command_pattern.svg/700px-Command_pattern.svg.png)
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Command_pattern.svg/700px-Command_pattern.svg.png)
 
 从上方的时序图中可以看出运行的顺序，Invoker执行execute方法，调用Command1对象，Command1执行action1方法调用Receiver1对象。
 
