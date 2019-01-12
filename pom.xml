@@ -14,6 +14,7 @@
         <module>command</module>
         <module>iterator</module>
         <module>visitor</module>
+        <module>interpreter</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
