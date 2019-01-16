@@ -1,4 +1,4 @@
-package com.damon.simple;
+package com.damon.command.simple;
 
 /**
  * 功能：客户端

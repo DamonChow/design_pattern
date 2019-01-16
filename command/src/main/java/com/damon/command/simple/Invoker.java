@@ -1,24 +1,24 @@
-package com.damon.simple;
+package com.damon.command.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 功能：左转命令
+ * 功能：请求方
  *
  * @author Damon
- * @since 2019-01-02 11:26
+ * @since 2019-01-02 11:30
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeftCommand implements Command {
+public class Invoker {
 
-    private Receiver receiver;
+    private Command command;
 
-    @Override
     public void execute() {
-        receiver.left();
+        command.execute();
     }
+
 }

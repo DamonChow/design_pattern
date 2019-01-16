@@ -1,4 +1,4 @@
-package com.damon.macro;
+package com.damon.command.macro;
 
 
 import lombok.extern.slf4j.Slf4j;

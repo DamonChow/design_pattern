@@ -1,5 +1,5 @@
 
-package com.damon.macro;
+package com.damon.command.macro;
 
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;

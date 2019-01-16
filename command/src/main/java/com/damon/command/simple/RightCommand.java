@@ -1,4 +1,4 @@
-package com.damon.undo;
+package com.damon.command.simple;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +20,5 @@ public class RightCommand implements Command {
     @Override
     public void execute() {
         receiver.right();
-    }
-
-    @Override
-    public void undo() {
-        receiver.left();
     }
 }

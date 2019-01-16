@@ -1,4 +1,4 @@
-package com.damon.undo;
+package com.damon.command.undo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

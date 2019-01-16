@@ -1,4 +1,4 @@
-package com.damon.simple;
+package com.damon.command.simple;
 
 import com.damon.simple1.CloseLevelState;
 import com.damon.simple1.Context;

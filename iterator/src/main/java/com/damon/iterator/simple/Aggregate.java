@@ -1,4 +1,4 @@
-package com.damon.simple;
+package com.damon.iterator.simple;
 
 /**
  * 功能：

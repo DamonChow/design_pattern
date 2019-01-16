@@ -1,4 +1,4 @@
-package com.damon.macro;
+package com.damon.command.simple;
 
 /**
  * 功能：抽象命令
@@ -6,7 +6,6 @@ package com.damon.macro;
  * @author Damon
  * @since 2019-01-02 11:24
  */
-@FunctionalInterface
 public interface Command {
 
     void execute();
