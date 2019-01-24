@@ -16,6 +16,7 @@
         <module>visitor</module>
         <module>interpreter</module>
         <module>mediator</module>
+        <module>observer</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>

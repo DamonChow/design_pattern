@@ -1,7 +1,7 @@
 package com.damon.command.undo;
 
-import com.damon.simple1.CloseLevelState;
-import com.damon.simple1.Context;
+import com.damon.strategy.simple1.CloseLevelState;
+import com.damon.strategy.simple1.Context;
 
 /**
  * 功能：接收方
