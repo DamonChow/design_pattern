@@ -3,7 +3,7 @@
 ## 观察者模式
 
 > Define a one-to-many dependency between objects where a state change in one object results in all its dependents being notified and updated automatically.
-
+>
 > 直译过来就是，定义对象间的一对多依赖关系，当一个对象的状态变更会自动通知和更新所有依赖项。像发布/订阅模式，事件通知模式，数据源/监听模式等都是性质一样。
 
 
