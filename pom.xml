@@ -17,6 +17,7 @@
         <module>interpreter</module>
         <module>mediator</module>
         <module>observer</module>
+        <module>memento</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
