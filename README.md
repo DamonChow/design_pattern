@@ -27,7 +27,7 @@
 - Interpreter （[解释器模式](https://damonchow.github.io/2019/01/10/design-pattern-interpreter)）
 - Iterator（[迭代器模式](https://damonchow.github.io/2019/01/02/design-pattern-iterator/)）
 - Mediator（[中介者模式](http://damonchow.github.io/2019/01/15/design-pattern-mediator)）
-- Memento（备忘录模式）
+- Memento（[备忘录模式](https://damonchow.github.io/2019/01/26/design-pattern-memento/)）
 - Observer（[观察者模式](http://damonchow.github.io/2019/01/24/design-pattern-observer)）
 - State（[状态模式](https://damonchow.github.io/2018/12/24/design-pattern-state)）
 - Strategy ([策略模式](https://damonchow.github.io/2018/12/20/design-pattern-strategy/))

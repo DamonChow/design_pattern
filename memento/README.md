@@ -41,7 +41,7 @@ Caretaker类是指用于保存(createMemento())和还原(restore(memento))发起
 
 # 干货示例
 
-源码地址
+[源码地址](https://github.com/DamonChow/design_pattern/tree/master/memento)
 
 
 
