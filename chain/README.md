@@ -1,10 +1,6 @@
 ### 责任链模式
 
-> 顾名思义，责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。这种类型的设计模式属于行为型模式。
->
-> 在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。
-
-<!--more-->
+> 顾名思义，责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。这种类型的设计模式属于行为型模式。在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。
 
 ### 简介
 
@@ -71,7 +67,7 @@
 
 travel包里主要对出行方式的责任链模式。跟进用户身上的钱，在优先级如飞机->火车->大巴的顺序下选择对应的出行模式。
 
-~~~java
+```java
 public class Application {
 
     public static void main(String[] args) {
@@ -87,7 +83,7 @@ public class Application {
         planeHandler.handleRequest("吴老五", 340d);
     }
 }
-~~~
+```
 
 ![img](https://ws1.sinaimg.cn/large/006tNbRwgy1fyh0p6ch0qj31d2054tam.jpg)
 
@@ -314,9 +310,178 @@ public class HandlerChain {
 }
 ```
 
-### 学习Java的Filter
+
+### 学习Web项目的Filter
 
 待补充...
+
+补充补充遗留的Filter过滤器中的责任链处理。
+
+本次主要是对Tomcat中的Filter处理简单的梳理，如有不正确的地方，还望指出来，大家互勉，共进。
+
+老项目大家可以在web.xml中配置filter，现使用Springboot后，也有两种配置filter方式，通过创建FilterRegistrationBean的方式和通过注解@WebFilter+@ServletComponentScan的方式。
+
+三个主要的角色
+
+FIlter，不多介绍了。
+
+FilterChain  servlet容器提供的开发调用链的过滤请求的资源。通过调用下一个filter实现过滤，在整体链上。
+
+FilterConfig  filter的配置器，在servlet容器在Filter初始化的时候传递信息。
+
+具体的filter，主要说说Spring中的两个抽象Filter，GenericFilterBean和OncePerRequestFilter。
+
+前者主要是做init和destroy的操作，重点还是init方法，destroy只是空实现而已。
+
+后者主要是做真正的doFilter操作，也是我们在Spring中创建Filter通常继承的。
+
+
+
+而ApplicationFilterChain就算Tomcat中的FilterChain实现。
+
+
+
+```java
+    /**
+     * The int which is used to maintain the current position
+     * in the filter chain.
+     */
+    private int pos = 0;
+
+
+    /**
+     * The int which gives the current number of filters in the chain.
+     */
+    private int n = 0;
+
+@Override
+public void doFilter(ServletRequest request, ServletResponse response)
+    throws IOException, ServletException {
+	//安全相关的，暂不关注
+    if( Globals.IS_SECURITY_ENABLED ) {
+        final ServletRequest req = request;
+        final ServletResponse res = response;
+        try {
+            java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedExceptionAction<Void>() {
+                    @Override
+                    public Void run()
+                        throws ServletException, IOException {
+                        internalDoFilter(req,res);
+                        return null;
+                    }
+                }
+            );
+        } catch( PrivilegedActionException pe) {
+            Exception e = pe.getException();
+            if (e instanceof ServletException)
+                throw (ServletException) e;
+            else if (e instanceof IOException)
+                throw (IOException) e;
+            else if (e instanceof RuntimeException)
+                throw (RuntimeException) e;
+            else
+                throw new ServletException(e.getMessage(), e);
+        }
+    } else {
+        //真正的doFilter
+        internalDoFilter(request,response);
+    }
+}
+
+
+private void internalDoFilter(ServletRequest request,
+                              ServletResponse response)
+    throws IOException, ServletException {
+	//pos 调用链中当前连接点所在的位置
+    //n 调用链总节点长度
+    // Call the next filter if there is one
+    if (pos < n) {
+        //对节点进行自增 pos++
+        ApplicationFilterConfig filterConfig = filters[pos++];
+        try {
+            //当前节点小于总长度后，从filter配置类中取出filter
+            Filter filter = filterConfig.getFilter();
+
+            if (request.isAsyncSupported() && "false".equalsIgnoreCase(
+                    filterConfig.getFilterDef().getAsyncSupported())) {
+                request.setAttribute(Globals.ASYNC_SUPPORTED_ATTR, Boolean.FALSE);
+            }
+            if( Globals.IS_SECURITY_ENABLED ) {
+                final ServletRequest req = request;
+                final ServletResponse res = response;
+                Principal principal =
+                    ((HttpServletRequest) req).getUserPrincipal();
+
+                Object[] args = new Object[]{req, res, this};
+                SecurityUtil.doAsPrivilege ("doFilter", filter, classType, args, principal);
+            } else {
+                //真正的filter
+                filter.doFilter(request, response, this);
+            }
+        } catch (IOException | ServletException | RuntimeException e) {
+            throw e;
+        } catch (Throwable e) {
+            e = ExceptionUtils.unwrapInvocationTargetException(e);
+            ExceptionUtils.handleThrowable(e);
+            throw new ServletException(sm.getString("filterChain.filter"), e);
+        }
+        return;
+    }
+
+    // We fell off the end of the chain -- call the servlet instance
+	//到了调用链结尾处，就真正调用servlet实例的servlet.service(request, response);
+    try {
+        if (ApplicationDispatcher.WRAP_SAME_OBJECT) {
+            lastServicedRequest.set(request);
+            lastServicedResponse.set(response);
+        }
+
+        if (request.isAsyncSupported() && !servletSupportsAsync) {
+            request.setAttribute(Globals.ASYNC_SUPPORTED_ATTR,
+                    Boolean.FALSE);
+        }
+        // Use potentially wrapped request from this point
+        if ((request instanceof HttpServletRequest) &&
+                (response instanceof HttpServletResponse) &&
+                Globals.IS_SECURITY_ENABLED ) {
+            final ServletRequest req = request;
+            final ServletResponse res = response;
+            Principal principal =
+                ((HttpServletRequest) req).getUserPrincipal();
+            Object[] args = new Object[]{req, res};
+            SecurityUtil.doAsPrivilege("service",
+                                       servlet,
+                                       classTypeUsedInService,
+                                       args,
+                                       principal);
+        } else {
+            servlet.service(request, response);
+        }
+    } catch (IOException | ServletException | RuntimeException e) {
+        throw e;
+    } catch (Throwable e) {
+        e = ExceptionUtils.unwrapInvocationTargetException(e);
+        ExceptionUtils.handleThrowable(e);
+        throw new ServletException(sm.getString("filterChain.servlet"), e);
+    } finally {
+        if (ApplicationDispatcher.WRAP_SAME_OBJECT) {
+            lastServicedRequest.set(null);
+            lastServicedResponse.set(null);
+        }
+    }
+}
+
+/**
+* Prepare for reuse of the filters and wrapper executed by this chain.
+* 重复使用filter调用链，pos重设为0
+*/
+void reuse() {
+    pos = 0;
+}
+```
+
+重点从ApplicationFilterChain中挑出几个重要的方法拿出来分析下Filter的调用链，其实还有几处没有具体讲到，ApplicationFilterChain是合适创建的，Filter是怎么加入到ApplicationFilterChain中的。这涉及到Tomcat是怎样加载Content的，下次分析Tomcat的时候，再来具体分析，它是如何运作的，如何加载web.xml。
 
 
 
@@ -324,8 +489,11 @@ public class HandlerChain {
 
 [维基的责任链模式](https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern)
 
-[菜鸟教程的责任链模式](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
+[责任链模式|菜鸟教程](http://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
+
+[Filter、FilterConfig、FilterChain|菜鸟教程](http://www.runoob.com/w3cnote/filter-filterchain-filterconfig-intro.html)
 
 [南乡清水的实际项目运用之Responsibility-Chain模式](https://www.jianshu.com/p/e52d1005d8f1)
 
 [一起学设计模式 - 责任链模式](https://segmentfault.com/a/1190000012148496)
+
