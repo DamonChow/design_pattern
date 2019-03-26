@@ -114,12 +114,6 @@ public abstract class AbstractProcessor<P extends Request, R extends Response> {
 }
 ```
 
-
-
-{% tabs %}
-
-<!-- tab Request -->
-
 基本请求
 
 ```java
@@ -152,6 +146,8 @@ public class Response {
 
 }
 ```
+
+
 
 ### 子类实现
 
@@ -330,6 +326,8 @@ public class TemplateMethodApplication {
 }
 ```
 
+
+
 ### 结果
 
 ![image-20190326112956730](https://ws1.sinaimg.cn/large/006tKfTcgy1g1g1dxi2iyj32du0ccdll.jpg)
@@ -348,7 +346,7 @@ public class TemplateMethodApplication {
 
 **使用场景：** 1、有多个子类共有的方法，且逻辑相同。 2、重要的、复杂的方法，可以考虑作为模板方法。
 
-**注意事项：**为防止恶意操作，一般模板方法都加上 final 关键词。
+**注意事项：** 为防止恶意操作，一般模板方法都加上 final 关键词。
 
 
 
