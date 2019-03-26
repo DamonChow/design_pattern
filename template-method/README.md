@@ -9,15 +9,14 @@ tags:
 - 模板方法
 ---
 
-{% note info %}
+
 
 # 模板方法模式
 
-Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
-
-翻译过来就是，把算法的框架定义好，可以将某些步抽象出来放到子类去实现。模板方法允许子类在不改变算法框架的情况下重新实现算法的某些步骤。
-
-{% endnote %}
+> Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+>
+> 翻译过来就是，把算法的框架定义好，可以将某些步抽象出来放到子类去实现。模板方法允许子类在不改变算法框架的情况下重新实现算法的某些步骤。
+>
 
 <!-- more -->
 
@@ -123,93 +122,75 @@ public abstract class AbstractProcessor<P extends Request, R extends Response> {
 
 基本请求
 
-{% codeblock lang:java %}
+```java
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Request {
 
-​    private String version;
+     private String version;
 
-​    private String token;
+     private String token;
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-<!-- tab Response-->
+```
 
 基本响应
 
-{% codeblock lang:java %}
+```java
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Response {
 
-​    private String msg;
+     private String msg;
 
-​    private int code;
+     private int code;
 
-​    private boolean success;
+     private boolean success;
 
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-{% endtabs %}
+```
 
 ### 子类实现
 
-
-
-{% tabs one %}
-
-<!-- tab OneProcessor-->
-
 第一个子类实现
 
-{% codeblock lang:java %}
+```java
 @Slf4j
 public class OneProcessor extends AbstractProcessor<OneRequest, OneResponse> {
 
-​    public OneProcessor() {
-​        ProcessorFactory.putProcess("two", this);
-​    }
+    public OneProcessor() {
+        ProcessorFactory.putProcess("two", this);
+    }
 
-​    @Override
-​    protected void afterHandle(OneResponse response) {
-​        log.info("处理One结果： {}", response.getOne());
-​    }
+    @Override
+    protected void afterHandle(OneResponse response) {
+        log.info("处理One结果： {}", response.getOne());
+    }
 
-​    @Override
-​    protected void validRequestParam(OneRequest request) {
-​        log.info("校验one参数...省略......");
-​    }
+    @Override
+    protected void validRequestParam(OneRequest request) {
+        log.info("校验one参数...省略......");
+    }
 
-​    @Override
-​    protected OneResponse getResponse(OneRequest request) {
-​        String name = request.getName();
-​                return OneResponse.builder()
-​                .one(name + "one")
-​                .success(true)
-​                .code(0)
-​                .msg("成功")
-​                .build();
-​    }
+    @Override
+    protected OneResponse getResponse(OneRequest request) {
+        String name = request.getName();
+                return OneResponse.builder()
+                .one(name + "one")
+                .success(true)
+                .code(0)
+                .msg("成功")
+                .build();
+    }
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-<!-- tab OneRequest -->
+```
 
 第一个子类的请求
 
-{% codeblock lang:java %}
+```java
 @Data
 @ToString(callSuper = true)
 @SuperBuilder
@@ -217,21 +198,17 @@ public class OneProcessor extends AbstractProcessor<OneRequest, OneResponse> {
 @AllArgsConstructor
 public class OneRequest extends Request {
 
-​    private String name;
+    private String name;
 
-​    @Builder.Default
-​    private int a = 0;
+    @Builder.Default
+    private int a = 0;
 
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-<!-- tab OneResponse -->
+```
 
 第一个子类的响应
 
-{% codeblock lang:java %}
+```java
 @Data
 @ToString(callSuper = true)
 @SuperBuilder
@@ -239,61 +216,47 @@ public class OneRequest extends Request {
 @AllArgsConstructor
 public class OneResponse extends Response {
 
-​    private String one;
+    private String one;
 
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-{% endtabs %}
-
-
-
-{% tabs two %}
-
-<!-- tab OneProcessor-->
+```
 
 第二个子类实现
 
-{% codeblock lang:java %}
+```java
 @Slf4j
 public class TwoProcessor extends AbstractProcessor<TwoRequest, TwoResponse> {
 
-​    public TwoProcessor() {
-​        ProcessorFactory.putProcess("two", this);
-​    }
+    public TwoProcessor() {
+        ProcessorFactory.putProcess("two", this);
+    }
 
-​    @Override
-​    protected void afterHandle(TwoResponse response) {
-​        log.info("处理结果TWO, {}", response);
-​    }
+    @Override
+    protected void afterHandle(TwoResponse response) {
+        log.info("处理结果TWO, {}", response);
+    }
 
-​    @Override
-​    protected void validRequestParam(TwoRequest request) {
-​        log.info("校验TWO参数...省略......");
-​    }
+    @Override
+    protected void validRequestParam(TwoRequest request) {
+        log.info("校验TWO参数...省略......");
+    }
 
-​    @Override
-​    protected TwoResponse getResponse(TwoRequest request) {
-​        Long id = request.getId();
-​        return TwoResponse.builder()
-​                .two("id为"+id)
-​                .success(true)
-​                .code(0)
-​                .msg("成功")
-​                .build();
-​    }
+    @Override
+    protected TwoResponse getResponse(TwoRequest request) {
+        Long id = request.getId();
+        return TwoResponse.builder()
+                .two("id为"+id)
+                .success(true)
+                .code(0)
+                .msg("成功")
+                .build();
+    }
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-<!-- tab TwoRequest -->
+```
 
 第二个子类的请求
 
-{% codeblock lang:java %}
+```java
 @Data
 @ToString(callSuper = true)
 @SuperBuilder
@@ -301,17 +264,13 @@ public class TwoProcessor extends AbstractProcessor<TwoRequest, TwoResponse> {
 @AllArgsConstructor
 public class TwoRequest extends Request {
 
-​    private Long id;
+    private Long id;
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-<!-- tab TwoResponse -->
+```
 
 第二个子类的响应
 
-{% codeblock lang:java %}
+```java
 @Data
 @ToString(callSuper = true)
 @SuperBuilder
@@ -319,15 +278,9 @@ public class TwoRequest extends Request {
 @AllArgsConstructor
 public class TwoResponse extends Response {
 
-​    private String two;
+    private String two;
 }
-{% endcodeblock %}
-
-<!-- endtab -->
-
-{% endtabs %}
-
-
+```
 
 ### 扩展为工厂
 
@@ -348,8 +301,6 @@ public class ProcessorFactory {
 
 }
 ```
-
-
 
 ### 执行程序
 
