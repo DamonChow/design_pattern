@@ -19,6 +19,7 @@
         <module>observer</module>
         <module>memento</module>
         <module>template-method</module>
+        <module>builder</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
