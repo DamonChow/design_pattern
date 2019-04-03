@@ -20,6 +20,7 @@
         <module>memento</module>
         <module>template-method</module>
         <module>builder</module>
+        <module>singleton</module>
     </modules>
     <packaging>pom</packaging>
     <name>design_pattern</name>
