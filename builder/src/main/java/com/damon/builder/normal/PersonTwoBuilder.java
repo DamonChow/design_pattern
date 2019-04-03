@@ -1,4 +1,4 @@
-package com.damon.normal;
+package com.damon.builder.normal;
 
 import com.google.common.collect.Lists;
 
@@ -8,18 +8,18 @@ import com.google.common.collect.Lists;
  * @author Damon
  * @since 2019-03-29 14:59
  */
-public class PersonOneBuilder extends AbstractPersonBuilder {
+public class PersonTwoBuilder extends AbstractPersonBuilder {
 
     public void buildName() {
-        product.setName("老one");
+        product.setName("老two");
     }
 
     public void buildAge() {
-        product.setAge(44);
+        product.setAge(55);
     }
 
     public void buildChildren() {
-        product.setChildren(Lists.newArrayList("小one"));
+        product.setChildren(Lists.newArrayList("小two"));
     }
 
 }

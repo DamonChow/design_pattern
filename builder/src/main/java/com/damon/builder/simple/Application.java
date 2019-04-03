@@ -1,4 +1,4 @@
-package com.damon.simple;
+package com.damon.builder.simple;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;

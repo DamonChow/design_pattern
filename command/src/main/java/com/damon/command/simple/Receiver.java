@@ -1,7 +1,7 @@
 package com.damon.command.simple;
 
-import com.damon.strategy.simple1.CloseLevelState;
-import com.damon.strategy.simple1.Context;
+import com.damon.state.CloseLevelState;
+import com.damon.state.Context;
 
 /**
  * 功能：接收方

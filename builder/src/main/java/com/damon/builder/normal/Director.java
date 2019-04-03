@@ -1,4 +1,4 @@
-package com.damon.normal;
+package com.damon.builder.normal;
 
 /**
  * 功能：

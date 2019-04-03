@@ -1,4 +1,4 @@
-package com.damon.lombok;
+package com.damon.builder.lombok;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,32 +1,32 @@
-package com.damon.strategy.simple1;
+package com.damon.state;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 功能：2档
+ * 功能：4档
  *
  * @author Damon
  * @since 2018-12-26 10:12
  */
 @Slf4j
-public class TwoLevelState implements LevelState {
+public class ForeLevelState implements LevelState {
 
     @Override
     public void left(Context context) {
-        LevelState levelState = new OneLevelState();
+        LevelState levelState = new ThreeLevelState();
         context.setLevelState(levelState);
         log.info("风扇左转到{}", levelState.info());
     }
 
     @Override
     public void right(Context context) {
-        LevelState levelState = new ThreeLevelState();
+        LevelState levelState = new CloseLevelState();
         context.setLevelState(levelState);
         log.info("风扇右转到{}", levelState.info());
     }
 
     @Override
     public String info() {
-        return "2档";
+        return "4档";
     }
 }

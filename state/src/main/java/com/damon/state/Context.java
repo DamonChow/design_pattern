@@ -1,4 +1,4 @@
-package com.damon.strategy.simple1;
+package com.damon.state;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.damon.normal;
+package com.damon.builder.normal;
 
 import lombok.extern.slf4j.Slf4j;
 

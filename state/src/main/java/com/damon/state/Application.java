@@ -1,4 +1,4 @@
-package com.damon.strategy.simple1;
+package com.damon.state;
 
 /**
  * 功能：开关管理器
